@@ -24,7 +24,7 @@ const Layout = ({ children }: ILayoutProps) => {
       
 
       {/* CONTEÚDO */}
-      <section className="paceapace-section w-full bg-neutral-300">
+      <section className="paceapace-section w-full calendar-effect ">
         <div className="w-full">
           { children }
         </div>

@@ -6,7 +6,11 @@
 @import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 body {
-  background: #d4d4d4;
+  background: #fff;
+}
+
+.calendar-effect {
+   background: linear-gradient(to bottom, #fff 50%, #dadada);
 }
 
 /* GLOBAL */
@@ -27,15 +31,15 @@ body {
   &::after {
     background: linear-gradient(to top, #262626, transparent);
     bottom: 0;
-    height: 700px;
+    height: 500px;
 
     @media only screen and (max-width: 767px) {
-      height: 400px;
+      height: 250px;
     }
   }
 
   &::before {
-    height: 150px;
+    height: 250px;
     background: linear-gradient(to bottom, #262626, transparent);
     top: 0;
   }
