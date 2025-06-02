@@ -1,0 +1,1 @@
+export const KEY_DARK_THEME = 'KEY_THEME';
