@@ -1,22 +1,25 @@
+import { CitiesEnum } from "@/enum/CitiesEnum";
+
+
 export const CITIES: any[] = [
   {
     text: 'Todas as cidades',
-    value: 'todas'
+    value: CitiesEnum.TODAS
   },
   {
     text: 'Santos',
-    value: 'santos'
+    value: CitiesEnum.SANTOS
   },
   {
     text: 'São Vicente',
-    value: 'saovicente'
+    value: CitiesEnum.SAOVICENTE
   },
   {
     text: 'Praia Grande',
-    value: 'praiagrande'
+    value: CitiesEnum.PRAIAGRANDE
   },
   {
     text: 'Guarujá',
-    value: 'guaruja'
+    value: CitiesEnum.GUARUJA
   }
 ]

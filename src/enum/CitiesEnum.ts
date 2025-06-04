@@ -1,0 +1,7 @@
+export enum CitiesEnum {
+  TODAS = 'TODAS',
+  SANTOS = 'SANTOS',
+  SAOVICENTE = 'SAOVICENTE',
+  PRAIAGRANDE = 'PRAIAGRANDE',
+  GUARUJA = 'GUARUJA'
+}

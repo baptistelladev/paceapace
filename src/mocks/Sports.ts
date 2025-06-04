@@ -1,18 +1,20 @@
+import { SportsEnum } from "@/enum/SportsEnum";
+
 export const SPORTS: any[] = [
   {
     text: 'Todos os esportes',
-    value: 'todos'
+    value: SportsEnum.TODOS
   },
   {
     text: 'Corrida',
-    value: 'corrida'
+    value: SportsEnum.CORRIDA
   },
   {
     text: 'Ciclismo',
-    value: 'ciclismo'
+    value: SportsEnum.CICLISMO
   },
   {
     text: 'Stand Up',
-    value: 'standup'
+    value: SportsEnum.STANDUP
   }
 ]
