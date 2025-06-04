@@ -151,7 +151,7 @@ const Inicio = () => {
         <div className="w-full">
           <div className="city-container m-auto max-w-md pt-4 px-6">
             <h1 className="font-bold text-lg">Programação</h1>
-            <p className="text-xs">Escolha um dia</p>
+            <p className="text-xs text-muted-foreground">Escolha um dia</p>
           </div>
         </div>
       </div>
@@ -171,7 +171,7 @@ const Inicio = () => {
       <div className="w-full px-0 pb-8">
         <div className="w-full max-w-md m-auto flex p-6 pt-1 flex-col">
           <h1 className="text-xl mb-1"><b>Dúvidas</b></h1>
-          <p className="text-xs">Algumas das dúvidas mais frequentes dos usuários.</p>
+          <p className="text-xs text-muted-foreground">Algumas das dúvidas mais frequentes dos usuários.</p>
 
           <div className="accordion-wrapper">
             <Accordion
