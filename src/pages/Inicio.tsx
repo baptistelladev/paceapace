@@ -14,12 +14,13 @@ import { CITIES } from "@/mocks/Cities";
 import { SPORTS } from "@/mocks/Sports";
 import Fade from "embla-carousel-fade";
 import { CalendarPlus } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ptBR } from "date-fns/locale";
+import { addDays } from "date-fns";
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/Drawer";
 
 /* COMPONENT */
 const Inicio = () => {
-  /* HOOKS */
 
   /* DATA */
   const MOCK_CITIES = [...CITIES];
@@ -30,7 +31,36 @@ const Inicio = () => {
   const [ selectedSport, setSelectedSport ] = useState<string>(SportsEnum.TODOS);
   const [ selectedCity, setSelectedCity ] = useState<string>(CitiesEnum.TODAS);
 
+  const [eventsSelectedMonth, setEventsSelectedMonth] = useState([]);
+  const [drawerIsOpen, setDrawerIsOpen] = useState<boolean>();
+  
+  /* HOOKS */
+  useEffect(() => {
+  
+    setEventsSelectedMonth([
+      {
+        event_name: "Texto 1",
+        day: new Date().toISOString(),
+      },
+      {
+        event_name: "Texto 2",
+        day: new Date(addDays(new Date(), 1)).toISOString(),
+      },
+      {
+        event_name: "Texto 2",
+        day: new Date(addDays(new Date(), 1)).toISOString(),
+      },
+    ]);
+  }, [])
+
   /* FUNCTIONS */
+  function selectEvent() {
+    
+  }
+
+  /* DATE */
+  const date = new Date();
+
 
   /* STRUCTURE */
   return (
@@ -67,8 +97,8 @@ const Inicio = () => {
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel className="font-normal text-sm">Cancelar</AlertDialogCancel>
-                <AlertDialogAction className="text-white font-normal text-sm">Sim, continuar indicação</AlertDialogAction>
+                <AlertDialogCancel className="font-normal text-xs">Cancelar</AlertDialogCancel>
+                <AlertDialogAction className="text-white font-normal text-xs">Sim, continuar indicação</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
@@ -150,21 +180,54 @@ const Inicio = () => {
 
         <div className="w-full">
           <div className="city-container m-auto max-w-md pt-4 px-6">
-            <h1 className="font-bold text-lg">Programação</h1>
-            <p className="text-xs text-muted-foreground">Escolha um dia</p>
+            <p className="text-xs text-muted-foreground p-5">Dias que possuem eventos esportivos estão destacados com <span className="h-3 w-3 bg-primary/30 inline-block mx-1"></span> e os demais dias ficam desabilitados.</p>
+            <h1 className="font-bold text-lg mt-3">Confira a programação</h1>
           </div>
         </div>
       </div>
 
       <div className="w-full px-5 pb-8">
-        <div className="w-full max-w-md m-auto flex pt-6 flex-col">
+        <div className="w-full max-w-md m-auto flex pt-3 flex-col">
           <Calendar
+            defaultMonth={new Date(date.getFullYear(), date.getMonth())}
             locale={ptBR}
             selected={selectedDay}
-            onSelect={setSelectedDay}
+            onSelect={(date) => {
+              setSelectedDay(date);
+              setDrawerIsOpen(true);
+            }}
             className="w-full p-1 pt-3"
             mode="single"
+            showOutsideDays={false}
+            modifiers={
+              {
+                events: eventsSelectedMonth.map((event) => new Date(event.day))
+              }
+            }
+            disabled={(day) => {
+              const dayDateStr = day.toDateString();
+
+              return !eventsSelectedMonth.some(
+                (event) => new Date(event.day).toDateString() === dayDateStr
+              );
+            }}
           />
+
+          <Drawer open={drawerIsOpen} onOpenChange={setDrawerIsOpen}>
+            <DrawerTrigger>Open</DrawerTrigger>
+            <DrawerContent className="h-[80vh]">
+              <DrawerHeader>
+                <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+                <DrawerDescription>This action cannot be undone.</DrawerDescription>
+              </DrawerHeader>
+              <DrawerFooter>
+                <Button>Submit</Button>
+                <DrawerClose>
+                  <Button variant="outline">Cancel</Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
         </div>
       </div>
 
